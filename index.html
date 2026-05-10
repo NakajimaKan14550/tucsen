@@ -16,7 +16,7 @@
 
         body {
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            line-height: 1.6;
+            line-height: 1.8;
             color: var(--text-color);
             background-color: var(--bg-color);
             margin: 0;
@@ -46,9 +46,9 @@
         }
 
         .hero-content h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 20px;
-            line-height: 1.2;
+            line-height: 1.3;
         }
 
         .hero-logo {
@@ -57,13 +57,13 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
         section {
-            margin-bottom: 60px;
+            margin-bottom: 80px;
             padding-bottom: 40px;
             border-bottom: 1px solid var(--border-color);
         }
@@ -71,7 +71,7 @@
         h2 {
             font-size: 1.8rem;
             color: var(--main-color);
-            border-left: 5px solid var(--accent-color);
+            border-left: 6px solid var(--accent-color);
             padding-left: 15px;
             margin-bottom: 30px;
         }
@@ -79,63 +79,56 @@
         h3 {
             font-size: 1.4rem;
             color: var(--main-color);
-            margin-top: 30px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            margin-top: 20px;
+            margin: 30px 0;
         }
 
         .card {
             background: #fff;
             padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: #fff;
-        }
-
-        th, td {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border-color);
-            padding: 12px;
-            text-align: left;
         }
 
-        th {
-            background-color: var(--main-color);
-            color: #fff;
+        /* 画像拡大仕様（Simple Zoom） */
+        .img-container {
+            margin: 30px 0;
+            text-align: center;
         }
 
-        tr:nth-child(even) {
-            background-color: #f1f5f9;
-        }
-
-        img {
+        img.zoomable {
             max-width: 100%;
             height: auto;
             cursor: zoom-in;
             transition: all 0.3s ease;
-            display: block;
-            margin: 20px 0;
+            border: 1px solid var(--border-color);
             border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         img.expanded {
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(1.5);
+            transform: translate(-50%, -50%) scale(1.05);
+            max-width: 90vw;
+            max-height: 90vh;
             z-index: 2000;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
             cursor: zoom-out;
+            box-shadow: 0 0 100px rgba(0,0,0,0.5);
+            background: #fff;
         }
 
         .overlay {
@@ -145,8 +138,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(9, 26, 45, 0.85);
             z-index: 1500;
+            backdrop-filter: blur(5px);
         }
 
         .overlay.active {
@@ -156,8 +150,12 @@
         .label-accent {
             color: var(--accent-color);
             font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
 
+        /* フッター */
         footer {
             background: #091a2d;
             color: #fff;
@@ -169,9 +167,13 @@
             .hero {
                 flex-direction: column;
                 text-align: center;
+                padding: 40px 5%;
+            }
+            .hero-content h1 {
+                font-size: 1.6rem;
             }
             .hero-logo {
-                margin-bottom: 20px;
+                height: 60px;
             }
         }
     </style>
@@ -185,10 +187,10 @@
 </header>
 
 <div class="hero">
-    <img src="logo.png" alt="Brand Logo" class="hero-logo">
+    <img src="logo.png" alt="CHRONIX Logo" class="hero-logo">
     <div class="hero-content">
-        <h1>次世代イメージングセンサーの物理的限界と技術的解決策</h1>
-        <p>UVから赤外線領域を網羅する、科学用CMOSおよび特殊波長センサーの構造解析</p>
+        <h1>次世代イメージング技術の物理的考察</h1>
+        <p>シリコンの物理的限界「1,100nmの壁」と、それを超越するセンサー統合ソリューション</p>
     </div>
 </div>
 
@@ -196,88 +198,79 @@
 
 <div class="container">
 
-    <section id="background">
-        <h2>【背景・課題】シリコン素材の物理的限界（1,100nmの壁）</h2>
-        <p>半導体イメージセンサーの性能は、受光素子に使用される素材の「バンドギャップ（禁制帯幅）」によって決定される。シリコン（Si）をベースとした標準的なCMOSセンサーは、可視光領域において高い効率を誇るが、波長が長くなるにつれ光子エネルギーが減少し、物理的な検出限界に直面する。</p>
+    <section>
+        <h2>【背景・課題】シリコンセンサーの物理的限界</h2>
+        <p>半導体イメージセンサーの受光能力は、素材固有のエネルギー特性（バンドギャップ）に依存する。シリコン（Si）ベースの標準CMOSは1,100nmを超える波長の光子を捕捉できず、赤外線領域では「透明なガラス」と化す物理的限界が存在する。</p>
         
-        <div class="grid">
-            <div class="card">
-                <h3>エネルギー不足による透過</h3>
-                <p>1,100nm（約 $1.1\text{ eV}$）を超える波長の光は、シリコンの電子を励起させるのに十分なエネルギーを持たない。その結果、光は素子をすり抜け、電気信号に変換されない「透明な状態」となる。</p>
-            </div>
-            <div class="card">
-                <h3>UV領域の吸収問題</h3>
-                <p>逆に波長が短いUV（紫外線）領域では、光がシリコンの極表面で吸収されてしまい、従来の構造（FSI：表面照射型）では受光層まで到達できない課題がある。</p>
-            </div>
+        <div class="img-container">
+            <img src="tuc5.png" alt="1100nmの壁の招待" class="zoomable">
+            <p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">図1：バンドギャップによる物理的限界と素材の棲み分け</p>
         </div>
-        
-    </section>
-
-    <section id="solution">
-        <h2>【解決策】波長帯域に応じたセンサー素材と構造の最適化</h2>
-        <p>この物理的限界を克服するため、Tucsenなどの先進メーカーは構造的アプローチ（BSI）を、LYNREDは素材置換（InGaAs/ボロメータ）を採用している。</p>
-
-        <h3>1. Tucsen：極限のsCMOS技術</h3>
-        <p>裏面照射型（BSI）構造を採用することで、UV領域（230nm〜）の高感度化を実現。また、読み出しノイズを $2\text{e}^- \text{rms}$ 以下に抑えることで、超広ダイナミックレンジ（132dB）を達成している。</p>
-        
-
-        <h3>2. LYNRED：特殊素材による赤外線検知</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>波長区分</th>
-                    <th>波長範囲</th>
-                    <th>センサー素材 / 技術</th>
-                    <th>主要メーカー</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>UV (紫外線)</td>
-                    <td>200nm - 400nm</td>
-                    <td>BSI構造 特殊CMOS</td>
-                    <td>Tucsen</td>
-                </tr>
-                <tr>
-                    <td>Visible / NIR</td>
-                    <td>400nm - 1,100nm</td>
-                    <td>標準CMOS (Si)</td>
-                    <td>Standard Manufacturers</td>
-                </tr>
-                <tr>
-                    <td>SWIR (短波長赤外線)</td>
-                    <td>1,000nm - 2,500nm</td>
-                    <td>InGaAs (インギャス)</td>
-                    <td>LYNRED</td>
-                </tr>
-                <tr>
-                    <td>LWIR (遠赤外線)</td>
-                    <td>8,000nm - 14,000nm</td>
-                    <td>マイクロボロメータ</td>
-                    <td>LYNRED</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="impact">
-        <h2>【産業的インパクト】半導体微細化と非破壊検査への応用</h2>
-        <p>これらの技術は、現代の産業インフラ、特に半導体製造プロセスの最先端領域において不可欠な役割を担っている。</p>
 
         <div class="grid">
             <div class="card">
-                <span class="label-accent">EUVリソグラフィ</span>
-                <p>13.5nmという極短波長を使用するEUV露光装置では、光源モニタリングにTucsenの「Dhyana X」シリーズが、マスク検査装置にはニューフレアテクノロジーの高度な制御技術が投入されている。</p>
+                <span class="label-accent">1,100nm Boundary</span>
+                <p>光子エネルギーが1.1eVを下回ると、シリコン内の電子を励起できず、信号変換が不可能となる。これが赤外線領域でシリコンが「真っ暗」になる理由である。</p>
             </div>
             <div class="card">
-                <span class="label-accent">TDI（Time Delay Integration）</span>
-                <p>高速移動する被写体（ウェハーや農産物）の電荷を同期転送・蓄積するTDIセンサー（9KTDI等）は、秒間60万ラインという超高速スキャンと高感度を両立させ、検査工程のタクトタイムを劇的に短縮する。</p>
+                <span class="label-accent">素材のバトンタッチ</span>
+                <p>この限界を超えるため、SWIR（短波長赤外線）ではInGaAs、LWIR（遠赤外線）ではボロメータといった特殊素材への移行が必要不可欠となる。</p>
             </div>
         </div>
+    </section>
 
-        <h3>EUV環境下におけるコンポーネントの役割</h3>
-        <p>EUV（極端紫外線）は空気やガラスに吸収されるため、システム全体を真空中に配置し、特殊な多層膜ミラーと非磁性ピエゾアクチュエータ（Cedrat製等）による精密制御が求められる極限のエンジニアリング領域である。</p>
-        
+    <section>
+        <h2>【解決策】Tucsenによる極限性能の追求</h2>
+        <p>中国Tucsen Photonicsは、BSI（裏面照射）技術と独自のsCMOS設計により、シリコンが対応可能な領域（UV〜NIR）において、世界トップクラスの低ノイズと広ダイナミックレンジを実現している。</p>
+
+        <div class="img-container">
+            <img src="tuc2.png" alt="Tucsenの強み" class="zoomable">
+            <p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">図2：極限の低ノイズ、TDI、およびEUV対応技術</p>
+        </div>
+
+        <div class="img-container">
+            <img src="tuc.png" alt="Tucsenの波長領域戦略" class="zoomable">
+            <p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">図3：BSI技術によるUV感度向上と1,100nmまでのカバー範囲</p>
+        </div>
+
+        <h3>技術的特徴：sCMOSとTDIセンサー</h3>
+        <p>Dhyanaシリーズに代表されるsCMOS技術は、読み出しノイズを2e- rms以下に抑え、光の粒を数えるような精密観測を可能にする。また、TDI（Time Delay Integration）技術は、高速移動する被写体の電荷を同期蓄積し、半導体ウェハー検査等で圧倒的なスループットを実現する。</p>
+    </section>
+
+    <section>
+        <h2>【解決策】LYNREDによる波長領域の拡張</h2>
+        <p>シリコンの限界を超える1,100nm以上の領域は、仏LYNRED社のインジウム・ガリウム・砒素（InGaAs）やマイクロボロメータ技術がカバーする。これにより、可視光では不可能な透過観察や熱検知が可能となる。</p>
+
+        <div class="img-container">
+            <img src="tuc4.png" alt="波長帯別のセンサー棲み分け表" class="zoomable">
+            <p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">図4：UVからLWIRまでの波長区分とセンサー素材・用途の対応</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>SWIR (InGaAs)</h3>
+                <p>煙・霧の透過や、シリコンウェハー自体の透過検査に威力を発揮。水分含有量の選別や樹脂識別など、産業用ソート分野で重要視される。</p>
+            </div>
+            <div class="card">
+                <h3>LWIR (Microbolometer)</h3>
+                <p>光ではなく「熱」を捉えるため、完全な暗闇でも撮影可能。工場設備の異常発熱監視や車載歩行者検知などに広く応用される。</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>【産業的インパクト】半導体インフラとEUVの極限世界</h2>
+        <p>これらの高度なイメージング技術は、日本のニューフレアテクノロジー社が手がける世界最高峰の半導体製造装置（マスク検査・描画装置）や、次世代のEUV（極端紫外線）リソグラフィ工程において核心的な役割を果たす。</p>
+
+        <div class="img-container">
+            <img src="tuc3.png" alt="センサー技術とEUVの極限世界" class="zoomable">
+            <p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">図5：半導体製造装置におけるセンサーの役割とEUV露光の難しさ</p>
+        </div>
+
+        <div class="card" style="margin-top: 30px;">
+            <span class="label-accent">EUV（極端紫外線）の特性</span>
+            <p>波長13.5nmのEUVは、空気やガラスに吸収されるため、装置全体を真空に保ち、特殊な多層膜ミラーで制御する必要がある。TucsenのDhyana Xシリーズは、このエネルギーの強い光を直接検知する特殊BSI構造を備え、光源モニタリングに不可欠な存在となっている。</p>
+        </div>
     </section>
 
 </div>
@@ -303,33 +296,42 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const images = document.querySelectorAll('img:not(.logo):not(.hero-logo)');
+        const images = document.querySelectorAll('img.zoomable');
         const overlay = document.getElementById('overlay');
 
         images.forEach(img => {
             img.addEventListener('click', (e) => {
                 e.stopPropagation();
-                img.classList.toggle('expanded');
-                overlay.classList.toggle('active');
+                if (img.classList.contains('expanded')) {
+                    closeImage(img);
+                } else {
+                    openImage(img);
+                }
             });
         });
 
         overlay.addEventListener('click', () => {
             const expandedImg = document.querySelector('img.expanded');
-            if (expandedImg) {
-                expandedImg.classList.remove('expanded');
-            }
-            overlay.classList.remove('active');
+            if (expandedImg) closeImage(expandedImg);
         });
+
+        function openImage(img) {
+            img.classList.add('expanded');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        }
+
+        function closeImage(img) {
+            img.classList.remove('expanded');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
         // Close on ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 const expandedImg = document.querySelector('img.expanded');
-                if (expandedImg) {
-                    expandedImg.classList.remove('expanded');
-                    overlay.classList.remove('active');
-                }
+                if (expandedImg) closeImage(expandedImg);
             }
         });
     });

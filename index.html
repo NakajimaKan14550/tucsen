@@ -3,134 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tucsen カスタムOEMソリューション - 科学用イメージング技術解説</title>
+    <title>高精度イメージング技術：UVからLWIRまでの物理的特性と産業応用</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --main-color: #091a2d;
             --accent-color: #f97316;
             --bg-color: #f8fafc;
             --text-color: #1e293b;
-            --header-text: #f1f5f9;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --border-color: #e2e8f0;
         }
 
         body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
             line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
         }
 
-        /* Navigation */
-        nav {
-            background-color: var(--main-color);
-            padding: 1rem 2rem;
+        header {
+            background: #fff;
+            padding: 15px 5%;
+            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 1000;
-            display: flex;
-            align-items: center;
         }
 
-        nav .logo {
+        .logo {
             height: 40px;
+            cursor: pointer;
         }
 
-        /* Hero Area */
         .hero {
             background-color: var(--main-color);
             color: #fff;
-            padding: 80px 20px;
-            text-align: center;
+            padding: 80px 5%;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 40px;
         }
 
-        .hero img {
-            width: 120px;
-            height: auto;
-        }
-
-        .hero h1 {
+        .hero-content h1 {
             font-size: 2.5rem;
-            letter-spacing: 0.05em;
-            margin-top: 10px;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
 
-        /* Layout */
+        .hero-logo {
+            height: 80px;
+            filter: brightness(0) invert(1);
+        }
+
         .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
         section {
-            background: #fff;
-            margin-bottom: 40px;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         h2 {
+            font-size: 1.8rem;
             color: var(--main-color);
             border-left: 5px solid var(--accent-color);
             padding-left: 15px;
-            margin-bottom: 25px;
-            font-size: 1.75rem;
+            margin-bottom: 30px;
         }
 
         h3 {
+            font-size: 1.4rem;
             color: var(--main-color);
-            margin: 20px 0 10px;
-            font-size: 1.25rem;
+            margin-top: 30px;
         }
 
-        p {
-            margin-bottom: 1.5rem;
-            text-align: justify;
-        }
-
-        ul {
-            margin-bottom: 1.5rem;
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Grid Layout */
-        .grid-3 {
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
+            margin-top: 20px;
         }
 
         .card {
-            background: #f1f5f9;
+            background: #fff;
             padding: 25px;
-            border-radius: 6px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        /* Image Simple Zoom */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--main-color);
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f1f5f9;
+        }
+
         img {
             max-width: 100%;
             height: auto;
             cursor: zoom-in;
             transition: all 0.3s ease;
             display: block;
-            margin: 20px auto;
+            margin: 20px 0;
+            border-radius: 4px;
         }
 
-        img.zoomed {
+        img.expanded {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -147,7 +145,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             z-index: 1500;
         }
 
@@ -155,7 +153,11 @@
             display: block;
         }
 
-        /* Footer from instructions */
+        .label-accent {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
         footer {
             background: #091a2d;
             color: #fff;
@@ -163,112 +165,175 @@
             text-align: center;
         }
 
-        .btn-contact:hover {
-            background: #ea580c !important;
-        }
-
         @media (max-width: 768px) {
-            .hero h1 { font-size: 1.8rem; }
-            section { padding: 25px; }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-logo {
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="https://nakajimakan14550.github.io/home/">
-            <img src="https://nakajimakan14550.github.io/home/logo.png" alt="Logo" class="logo">
-        </a>
-    </nav>
+<header>
+    <a href="https://nakajimakan14550.github.io/home/">
+        <img src="logo.png" alt="Logo" class="logo">
+    </a>
+</header>
 
-    <div class="hero">
-        <img src="https://nakajimakan14550.github.io/home/logo.png" alt="Tucsen Logo">
-        <h1>Tucsen カスタムOEMソリューション</h1>
-        <p style="max-width: 700px; margin: 0 auto;">科学用イメージングにおける個別設計とシステム統合の最適化</p>
+<div class="hero">
+    <img src="logo.png" alt="Brand Logo" class="hero-logo">
+    <div class="hero-content">
+        <h1>次世代イメージングセンサーの物理的限界と技術的解決策</h1>
+        <p>UVから赤外線領域を網羅する、科学用CMOSおよび特殊波長センサーの構造解析</p>
     </div>
+</div>
 
-    <div class="overlay" id="zoomOverlay"></div>
+<div class="overlay" id="overlay"></div>
 
-    <main class="container">
+<div class="container">
+
+    <section id="background">
+        <h2>【背景・課題】シリコン素材の物理的限界（1,100nmの壁）</h2>
+        <p>半導体イメージセンサーの性能は、受光素子に使用される素材の「バンドギャップ（禁制帯幅）」によって決定される。シリコン（Si）をベースとした標準的なCMOSセンサーは、可視光領域において高い効率を誇るが、波長が長くなるにつれ光子エネルギーが減少し、物理的な検出限界に直面する。</p>
         
-        <!-- 背景・課題 -->
-        <section id="background">
-            <h2>【背景・課題】標準製品の限界と個別要求</h2>
-            <p>
-                科学研究および高度医療分野におけるイメージングシステムでは、観測対象（細胞、生体組織、微細構造等）ごとに最適な光学条件が異なります。汎用的な標準カメラは、広範な用途をカバーするために設計されている一方で、特定のシステム統合における物理的な制約（空間容積、重量、熱排気）や、独自の信号処理アルゴリズムの適用、特定波長に対する感度最適化といった専門性の高い要求に対して、十分な性能を発揮できないケースが存在します。
-            </p>
-            <p>
-                このような「既製品の仕様にシステムを合わせる」というアプローチが引き起こす開発効率の低下と、物理的・性能的限界の突破が、現代の精密イメージングにおける大きな課題となっています。
-            </p>
-        </section>
-
-        <!-- 解決策 -->
-        <section id="solution">
-            <h2>【解決策】Tucsen カスタムOEMの技術原理</h2>
-            <div class="grid-3">
-                <div class="card">
-                    <h3>垂直統合型開発</h3>
-                    <p>概念設計から製作まで一貫して対応。顧客のコンセプトを起点とし、パートナーシップに基づいた厳密な設計プロセスを適用します。</p>
-                </div>
-                <div class="card">
-                    <h3>ハードウェアの最適化</h3>
-                    <p>センサ、画像処理エンジン、内部基板から筐体デザイン、インターフェースに至るまで、顧客ブランドとシステムに適合するようゼロから構築します。</p>
-                </div>
-                <div class="card">
-                    <h3>高信頼性設計</h3>
-                    <p>医療および生命科学分野の厳格な基準に対応するため、微細な変化を検出する高精度な信号処理技術と長期安定動作を実現する堅牢なアーキテクチャを採用しています。</p>
-                </div>
+        <div class="grid">
+            <div class="card">
+                <h3>エネルギー不足による透過</h3>
+                <p>1,100nm（約 $1.1\text{ eV}$）を超える波長の光は、シリコンの電子を励起させるのに十分なエネルギーを持たない。その結果、光は素子をすり抜け、電気信号に変換されない「透明な状態」となる。</p>
             </div>
-        </section>
-
-        <!-- 産業的インパクト -->
-        <section id="impact">
-            <h2>【産業的インパクト】科学・医療への具体的貢献</h2>
-            <p>
-                Tucsenのカスタムソリューションは、単なるデバイス供給に留まらず、最終製品の市場競争力に直接的な影響を与えます。
-            </p>
-            <ul>
-                <li><strong>システム性能の最大化:</strong> 専用設計されたカメラを導入することで、光学系全体のS/N比向上やデータスループットの最適化が図られ、観測精度が理論限界まで引き上げられます。</li>
-                <li><strong>研究効率の向上:</strong> 「これまで捉えられなかった事象」を可視化することで、生命科学における新たな発見や、医療診断の確実性を高めるための基盤技術として機能します。</li>
-                <li><strong>ブランド価値の強化:</strong> 顧客固有のUI/UXとシームレスに統合されたOEMカメラは、独自の製品アイデンティティを確立し、市場における優位性を担保します。</li>
-            </ul>
-        </section>
-
-    </main>
-
-    <footer style="background: #091a2d; color: #fff; padding: 60px 20px; text-align: center;">
-        <div class="footer-info">
-            <p class="company-name" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 20px;">クロニクス株式会社</p>
-            <address class="footer-address" style="font-style: normal; line-height: 1.8; color: #cbd5e1;">
-                <p>〒160-0023 東京都新宿区西新宿3-2-11 新宿三井ビルディング二号館 904室</p>
-                <div class="contact-grid" style="display: flex; justify-content: center; gap: 20px; margin: 20px 0;">
-                    <p><strong>TEL</strong> 03-5322-7191</p>
-                    <p><strong>FAX</strong> 03-5322-7790</p>
-                </div>
-            </address>
-            <a href="mailto:sales@chronix.co.jp" class="btn-contact" style="display: inline-block; background: #f97316; color: white; padding: 12px 30px; border-radius: 5px; text-decoration: none; margin-top: 20px;">
-                <i class="fas fa-envelope" style="margin-right: 10px;"></i>メールでお問い合わせ
-            </a>
-            <p style="margin-top: 50px; font-size: 0.8rem; color: #64748b; letter-spacing: 0.05em;">
-                © 2026 CHRONIX
-            </p>
+            <div class="card">
+                <h3>UV領域の吸収問題</h3>
+                <p>逆に波長が短いUV（紫外線）領域では、光がシリコンの極表面で吸収されてしまい、従来の構造（FSI：表面照射型）では受光層まで到達できない課題がある。</p>
+            </div>
         </div>
-    </footer>
+        
+    </section>
 
-    <script>
-        document.querySelectorAll('img').forEach(img => {
-            img.addEventListener('click', () => {
-                img.classList.toggle('zoomed');
-                document.getElementById('zoomOverlay').classList.toggle('active');
+    <section id="solution">
+        <h2>【解決策】波長帯域に応じたセンサー素材と構造の最適化</h2>
+        <p>この物理的限界を克服するため、Tucsenなどの先進メーカーは構造的アプローチ（BSI）を、LYNREDは素材置換（InGaAs/ボロメータ）を採用している。</p>
+
+        <h3>1. Tucsen：極限のsCMOS技術</h3>
+        <p>裏面照射型（BSI）構造を採用することで、UV領域（230nm〜）の高感度化を実現。また、読み出しノイズを $2\text{e}^- \text{rms}$ 以下に抑えることで、超広ダイナミックレンジ（132dB）を達成している。</p>
+        
+
+        <h3>2. LYNRED：特殊素材による赤外線検知</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>波長区分</th>
+                    <th>波長範囲</th>
+                    <th>センサー素材 / 技術</th>
+                    <th>主要メーカー</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>UV (紫外線)</td>
+                    <td>200nm - 400nm</td>
+                    <td>BSI構造 特殊CMOS</td>
+                    <td>Tucsen</td>
+                </tr>
+                <tr>
+                    <td>Visible / NIR</td>
+                    <td>400nm - 1,100nm</td>
+                    <td>標準CMOS (Si)</td>
+                    <td>Standard Manufacturers</td>
+                </tr>
+                <tr>
+                    <td>SWIR (短波長赤外線)</td>
+                    <td>1,000nm - 2,500nm</td>
+                    <td>InGaAs (インギャス)</td>
+                    <td>LYNRED</td>
+                </tr>
+                <tr>
+                    <td>LWIR (遠赤外線)</td>
+                    <td>8,000nm - 14,000nm</td>
+                    <td>マイクロボロメータ</td>
+                    <td>LYNRED</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="impact">
+        <h2>【産業的インパクト】半導体微細化と非破壊検査への応用</h2>
+        <p>これらの技術は、現代の産業インフラ、特に半導体製造プロセスの最先端領域において不可欠な役割を担っている。</p>
+
+        <div class="grid">
+            <div class="card">
+                <span class="label-accent">EUVリソグラフィ</span>
+                <p>13.5nmという極短波長を使用するEUV露光装置では、光源モニタリングにTucsenの「Dhyana X」シリーズが、マスク検査装置にはニューフレアテクノロジーの高度な制御技術が投入されている。</p>
+            </div>
+            <div class="card">
+                <span class="label-accent">TDI（Time Delay Integration）</span>
+                <p>高速移動する被写体（ウェハーや農産物）の電荷を同期転送・蓄積するTDIセンサー（9KTDI等）は、秒間60万ラインという超高速スキャンと高感度を両立させ、検査工程のタクトタイムを劇的に短縮する。</p>
+            </div>
+        </div>
+
+        <h3>EUV環境下におけるコンポーネントの役割</h3>
+        <p>EUV（極端紫外線）は空気やガラスに吸収されるため、システム全体を真空中に配置し、特殊な多層膜ミラーと非磁性ピエゾアクチュエータ（Cedrat製等）による精密制御が求められる極限のエンジニアリング領域である。</p>
+        
+    </section>
+
+</div>
+
+<footer style="background: #091a2d; color: #fff; padding: 60px 20px; text-align: center;">
+    <div class="footer-info">
+        <p class="company-name" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 20px;">クロニクス株式会社</p>
+        <address class="footer-address" style="font-style: normal; line-height: 1.8; color: #cbd5e1;">
+            <p>〒160-0023 東京都新宿区西新宿3-2-11 新宿三井ビルディング二号館 904室</p>
+            <div class="contact-grid" style="display: flex; justify-content: center; gap: 20px; margin: 20px 0;">
+                <p><strong>TEL</strong> 03-5322-7191</p>
+                <p><strong>FAX</strong> 03-5322-7790</p>
+            </div>
+        </address>
+        <a href="mailto:sales@chronix.co.jp" class="btn-contact" style="display: inline-block; background: #f97316; color: white; padding: 12px 30px; border-radius: 5px; text-decoration: none; margin-top: 20px;">
+            <i class="fas fa-envelope" style="margin-right: 10px;"></i>メールでお問い合わせ
+        </a>
+        <p style="margin-top: 50px; font-size: 0.8rem; color: #64748b; letter-spacing: 0.05em;">
+            © 2026 CHRONIX
+        </p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('img:not(.logo):not(.hero-logo)');
+        const overlay = document.getElementById('overlay');
+
+        images.forEach(img => {
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
+                img.classList.toggle('expanded');
+                overlay.classList.toggle('active');
             });
         });
 
-        document.getElementById('zoomOverlay').addEventListener('click', () => {
-            document.querySelectorAll('img.zoomed').forEach(img => {
-                img.classList.remove('zoomed');
-            });
-            document.getElementById('zoomOverlay').classList.remove('active');
+        overlay.addEventListener('click', () => {
+            const expandedImg = document.querySelector('img.expanded');
+            if (expandedImg) {
+                expandedImg.classList.remove('expanded');
+            }
+            overlay.classList.remove('active');
         });
-    </script>
+
+        // Close on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const expandedImg = document.querySelector('img.expanded');
+                if (expandedImg) {
+                    expandedImg.classList.remove('expanded');
+                    overlay.classList.remove('active');
+                }
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

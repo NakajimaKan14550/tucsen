@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tucsen カスタムOEMソリューション - 科学用イメージング技術解説</title>
+    <style>
+        :root {
+            --main-color: #091a2d;
+            --accent-color: #f97316;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --header-text: #f1f5f9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--main-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        nav .logo {
+            height: 40px;
+        }
+
+        /* Hero Area */
+        .hero {
+            background-color: var(--main-color);
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero img {
+            width: 120px;
+            height: auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            letter-spacing: 0.05em;
+            margin-top: 10px;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            background: #fff;
+            margin-bottom: 40px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        h2 {
+            color: var(--main-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            font-size: 1.75rem;
+        }
+
+        h3 {
+            color: var(--main-color);
+            margin: 20px 0 10px;
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        ul {
+            margin-bottom: 1.5rem;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Grid Layout */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #f1f5f9;
+            padding: 25px;
+            border-radius: 6px;
+        }
+
+        /* Image Simple Zoom */
+        img {
+            max-width: 100%;
+            height: auto;
+            cursor: zoom-in;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto;
+        }
+
+        img.zoomed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.5);
+            z-index: 2000;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            cursor: zoom-out;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1500;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Footer from instructions */
+        footer {
+            background: #091a2d;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .btn-contact:hover {
+            background: #ea580c !important;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            section { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="https://nakajimakan14550.github.io/home/">
+            <img src="https://nakajimakan14550.github.io/home/logo.png" alt="Logo" class="logo">
+        </a>
+    </nav>
+
+    <div class="hero">
+        <img src="https://nakajimakan14550.github.io/home/logo.png" alt="Tucsen Logo">
+        <h1>Tucsen カスタムOEMソリューション</h1>
+        <p style="max-width: 700px; margin: 0 auto;">科学用イメージングにおける個別設計とシステム統合の最適化</p>
+    </div>
+
+    <div class="overlay" id="zoomOverlay"></div>
+
+    <main class="container">
+        
+        <!-- 背景・課題 -->
+        <section id="background">
+            <h2>【背景・課題】標準製品の限界と個別要求</h2>
+            <p>
+                科学研究および高度医療分野におけるイメージングシステムでは、観測対象（細胞、生体組織、微細構造等）ごとに最適な光学条件が異なります。汎用的な標準カメラは、広範な用途をカバーするために設計されている一方で、特定のシステム統合における物理的な制約（空間容積、重量、熱排気）や、独自の信号処理アルゴリズムの適用、特定波長に対する感度最適化といった専門性の高い要求に対して、十分な性能を発揮できないケースが存在します。
+            </p>
+            <p>
+                このような「既製品の仕様にシステムを合わせる」というアプローチが引き起こす開発効率の低下と、物理的・性能的限界の突破が、現代の精密イメージングにおける大きな課題となっています。
+            </p>
+        </section>
+
+        <!-- 解決策 -->
+        <section id="solution">
+            <h2>【解決策】Tucsen カスタムOEMの技術原理</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>垂直統合型開発</h3>
+                    <p>概念設計から製作まで一貫して対応。顧客のコンセプトを起点とし、パートナーシップに基づいた厳密な設計プロセスを適用します。</p>
+                </div>
+                <div class="card">
+                    <h3>ハードウェアの最適化</h3>
+                    <p>センサ、画像処理エンジン、内部基板から筐体デザイン、インターフェースに至るまで、顧客ブランドとシステムに適合するようゼロから構築します。</p>
+                </div>
+                <div class="card">
+                    <h3>高信頼性設計</h3>
+                    <p>医療および生命科学分野の厳格な基準に対応するため、微細な変化を検出する高精度な信号処理技術と長期安定動作を実現する堅牢なアーキテクチャを採用しています。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 産業的インパクト -->
+        <section id="impact">
+            <h2>【産業的インパクト】科学・医療への具体的貢献</h2>
+            <p>
+                Tucsenのカスタムソリューションは、単なるデバイス供給に留まらず、最終製品の市場競争力に直接的な影響を与えます。
+            </p>
+            <ul>
+                <li><strong>システム性能の最大化:</strong> 専用設計されたカメラを導入することで、光学系全体のS/N比向上やデータスループットの最適化が図られ、観測精度が理論限界まで引き上げられます。</li>
+                <li><strong>研究効率の向上:</strong> 「これまで捉えられなかった事象」を可視化することで、生命科学における新たな発見や、医療診断の確実性を高めるための基盤技術として機能します。</li>
+                <li><strong>ブランド価値の強化:</strong> 顧客固有のUI/UXとシームレスに統合されたOEMカメラは、独自の製品アイデンティティを確立し、市場における優位性を担保します。</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer style="background: #091a2d; color: #fff; padding: 60px 20px; text-align: center;">
+        <div class="footer-info">
+            <p class="company-name" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 20px;">クロニクス株式会社</p>
+            <address class="footer-address" style="font-style: normal; line-height: 1.8; color: #cbd5e1;">
+                <p>〒160-0023 東京都新宿区西新宿3-2-11 新宿三井ビルディング二号館 904室</p>
+                <div class="contact-grid" style="display: flex; justify-content: center; gap: 20px; margin: 20px 0;">
+                    <p><strong>TEL</strong> 03-5322-7191</p>
+                    <p><strong>FAX</strong> 03-5322-7790</p>
+                </div>
+            </address>
+            <a href="mailto:sales@chronix.co.jp" class="btn-contact" style="display: inline-block; background: #f97316; color: white; padding: 12px 30px; border-radius: 5px; text-decoration: none; margin-top: 20px;">
+                <i class="fas fa-envelope" style="margin-right: 10px;"></i>メールでお問い合わせ
+            </a>
+            <p style="margin-top: 50px; font-size: 0.8rem; color: #64748b; letter-spacing: 0.05em;">
+                © 2026 CHRONIX
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('click', () => {
+                img.classList.toggle('zoomed');
+                document.getElementById('zoomOverlay').classList.toggle('active');
+            });
+        });
+
+        document.getElementById('zoomOverlay').addEventListener('click', () => {
+            document.querySelectorAll('img.zoomed').forEach(img => {
+                img.classList.remove('zoomed');
+            });
+            document.getElementById('zoomOverlay').classList.remove('active');
+        });
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高精度イメージング技術：UVからLWIRまでの物理的特性と産業応用</title>
+    <title>真空環境撮像の最適化：Tucsen Dhyanaによる標準化ソリューション</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -106,6 +106,10 @@
         .img-container {
             margin: 30px 0;
             text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
 
         img.zoomable {
@@ -113,9 +117,6 @@
             height: auto;
             cursor: zoom-in;
             transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         img.expanded {
@@ -155,7 +156,25 @@
             font-size: 1.1rem;
         }
 
-        /* フッター */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background: var(--main-color);
+            color: #fff;
+        }
+
         footer {
             background: #091a2d;
             color: #fff;
@@ -164,17 +183,9 @@
         }
 
         @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding: 40px 5%;
-            }
-            .hero-content h1 {
-                font-size: 1.6rem;
-            }
-            .hero-logo {
-                height: 60px;
-            }
+            .hero { flex-direction: column; text-align: center; padding: 40px 5%; }
+            .hero-content h1 { font-size: 1.6rem; }
+            .hero-logo { height: 60px; }
         }
     </style>
 </head>
@@ -189,8 +200,8 @@
 <div class="hero">
     <img src="logo.png" alt="CHRONIX Logo" class="hero-logo">
     <div class="hero-content">
-        <h1>次世代イメージング技術の物理的考察</h1>
-        <p>シリコンの物理的限界「1,100nmの壁」と、それを超越するセンサー統合ソリューション</p>
+        <h1>真空環境におけるTucsen Dhyanaカメラの活用</h1>
+        <p>「なぜ真空か？」物理的優位性と、カスタム筐体を超越する標準設置スタイルの提案</p>
     </div>
 </div>
 
@@ -199,78 +210,84 @@
 <div class="container">
 
     <section>
-        <h2>【背景・課題】シリコンセンサーの物理的限界</h2>
-        <p>半導体イメージセンサーの受光能力は、素材固有のエネルギー特性（バンドギャップ）に依存する。シリコン（Si）ベースの標準CMOSは1,100nmを超える波長の光子を捕捉できず、赤外線領域では「透明なガラス」と化す物理的限界が存在する。</p>
+        <h2>【背景・課題】真空が要求される物理的根拠</h2>
+        <p>高精度イメージング、特に軟X線やEUV（極端紫外線）の領域では、大気による光子吸収が最大の障壁となる。また、センサーの熱雑音を極限まで抑えるためには、結露の心配がない真空環境下での深冷冷却が物理的に不可欠である。</p>
         
         <div class="img-container">
-            <img src="tuc5.png" alt="1100nmの壁の招待" class="zoomable">
-            <p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">図1：バンドギャップによる物理的限界と素材の棲み分け</p>
+            <img src="tuc6.png" alt="真空環境における活用メリット" class="zoomable">
+            <p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">図1：軟X線・EUVの直接検出と、深冷冷却によるノイズ低減のメカニズム</p>
         </div>
 
         <div class="grid">
             <div class="card">
-                <span class="label-accent">1,100nm Boundary</span>
-                <p>光子エネルギーが1.1eVを下回ると、シリコン内の電子を励起できず、信号変換が不可能となる。これが赤外線領域でシリコンが「真っ暗」になる理由である。</p>
+                <span class="label-accent">1. 直接検出の必要性</span>
+                <p>軟X線は空気分子に吸収されるため、光源からセンサーまでを真空にする必要がある。窓なしセンサー（Direct Detection）により、量子効率（QE）を最大化する。</p>
             </div>
             <div class="card">
-                <span class="label-accent">素材のバトンタッチ</span>
-                <p>この限界を超えるため、SWIR（短波長赤外線）ではInGaAs、LWIR（遠赤外線）ではボロメータといった特殊素材への移行が必要不可欠となる。</p>
+                <span class="label-accent">2. 極低温冷却によるノイズ遮断</span>
+                <p>真空は理想的な断熱材となり、センサーを常温下でも -60℃ まで安定冷却可能。温度低下に伴いノイズレベルは指数関数的に減少する。</p>
             </div>
         </div>
     </section>
 
     <section>
-        <h2>【解決策】Tucsenによる極限性能の追求</h2>
-        <p>中国Tucsen Photonicsは、BSI（裏面照射）技術と独自のsCMOS設計により、シリコンが対応可能な領域（UV〜NIR）において、世界トップクラスの低ノイズと広ダイナミックレンジを実現している。</p>
+        <h2>【解決策】設置スタイルとモデルの最適化</h2>
+        <p>切削加工による自作筐体は、気密性の確保や排熱設計に多大なリスクを伴う。Tucsenは、用途に合わせて最適化された2つの標準設置スタイルを提供し、導入コストと設計工数を大幅に削減する。</p>
 
         <div class="img-container">
-            <img src="tuc2.png" alt="Tucsenの強み" class="zoomable">
-            <p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">図2：極限の低ノイズ、TDI、およびEUV対応技術</p>
-        </div>
-
-        <div class="img-container">
-            <img src="tuc.png" alt="Tucsenの波長領域戦略" class="zoomable">
-            <p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">図3：BSI技術によるUV感度向上と1,100nmまでのカバー範囲</p>
-        </div>
-
-        <h3>技術的特徴：sCMOSとTDIセンサー</h3>
-        <p>Dhyanaシリーズに代表されるsCMOS技術は、読み出しノイズを2e- rms以下に抑え、光の粒を数えるような精密観測を可能にする。また、TDI（Time Delay Integration）技術は、高速移動する被写体の電荷を同期蓄積し、半導体ウェハー検査等で圧倒的なスループットを実現する。</p>
-    </section>
-
-    <section>
-        <h2>【解決策】LYNREDによる波長領域の拡張</h2>
-        <p>シリコンの限界を超える1,100nm以上の領域は、仏LYNRED社のインジウム・ガリウム・砒素（InGaAs）やマイクロボロメータ技術がカバーする。これにより、可視光では不可能な透過観察や熱検知が可能となる。</p>
-
-        <div class="img-container">
-            <img src="tuc4.png" alt="波長帯別のセンサー棲み分け表" class="zoomable">
-            <p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">図4：UVからLWIRまでの波長区分とセンサー素材・用途の対応</p>
+            <img src="tuc5.png" alt="設置スタイルとモデル比較" class="zoomable">
+            <p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">図2：In-Vacuum（内部設置）とOpen-Front（フランジ接続）の構造比較</p>
         </div>
 
         <div class="grid">
             <div class="card">
-                <h3>SWIR (InGaAs)</h3>
-                <p>煙・霧の透過や、シリコンウェハー自体の透過検査に威力を発揮。水分含有量の選別や樹脂識別など、産業用ソート分野で重要視される。</p>
+                <h3>1. In-Vacuum（真空内設置）</h3>
+                <span class="label-accent">モデル例: Dhyana XV95 / XV400BSI</span>
+                <p>カメラ全体をチェンバー内に配置。水冷システムと光ファイバー転送により、10^-6 Pa の環境下でも大気中と同等の安定した運用を実現。大がかりな筐体設計が不要。</p>
             </div>
             <div class="card">
-                <h3>LWIR (Microbolometer)</h3>
-                <p>光ではなく「熱」を捉えるため、完全な暗闇でも撮影可能。工場設備の異常発熱監視や車載歩行者検知などに広く応用される。</p>
+                <h3>2. Open-Front（フランジ接続）</h3>
+                <span class="label-accent">モデル例: Dhyana XF95 / XF400BSI</span>
+                <p>センサーエリアのみを真空に露出させ、本体は大気中に配置。CFフランジ等で直接接続し、10^-7 Pa の超高真空環境に対応。軟X線・EUVの直接観測に最適。</p>
             </div>
         </div>
     </section>
 
     <section>
-        <h2>【産業的インパクト】半導体インフラとEUVの極限世界</h2>
-        <p>これらの高度なイメージング技術は、日本のニューフレアテクノロジー社が手がける世界最高峰の半導体製造装置（マスク検査・描画装置）や、次世代のEUV（極端紫外線）リソグラフィ工程において核心的な役割を果たす。</p>
+        <h2>【産業的インパクト】標準品採用のメリット比較</h2>
+        <p>自社での切削筐体開発と比較し、Tucsenの真空専用モデルを採用することで、以下の技術的・経済的アドバンテージを確保できる。</p>
 
-        <div class="img-container">
-            <img src="tuc3.png" alt="センサー技術とEUVの極限世界" class="zoomable">
-            <p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">図5：半導体製造装置におけるセンサーの役割とEUV露光の難しさ</p>
-        </div>
-
-        <div class="card" style="margin-top: 30px;">
-            <span class="label-accent">EUV（極端紫外線）の特性</span>
-            <p>波長13.5nmのEUVは、空気やガラスに吸収されるため、装置全体を真空に保ち、特殊な多層膜ミラーで制御する必要がある。TucsenのDhyana Xシリーズは、このエネルギーの強い光を直接検知する特殊BSI構造を備え、光源モニタリングに不可欠な存在となっている。</p>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>評価項目</th>
+                    <th>Tucsen 標準品 (XV/XF)</th>
+                    <th>カスタム切削筐体 (自作)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>真空実証</strong></td>
+                    <td>10^-6 ～ 10^-7 Pa 動作保証済み</td>
+                    <td>気密漏れ・ガス放出のリスク大</td>
+                </tr>
+                <tr>
+                    <td><strong>センサー冷却</strong></td>
+                    <td>最大 -60℃（水冷・真空断熱内蔵）</td>
+                    <td>放熱経路の設計が極めて困難</td>
+                </tr>
+                <tr>
+                    <td><strong>データインターフェース</strong></td>
+                    <td>光ファイバー（USB 3.0-Over-Fiber）標準</td>
+                    <td>真空フィードスルーの個別設計が必要</td>
+                </tr>
+                <tr>
+                    <td><strong>導入コスト・納期</strong></td>
+                    <td>低コスト・短納期</td>
+                    <td>設計・加工・試験に数ヶ月を要する</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 
 </div>
@@ -318,7 +335,7 @@
         function openImage(img) {
             img.classList.add('expanded');
             overlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scroll
+            document.body.style.overflow = 'hidden';
         }
 
         function closeImage(img) {
@@ -327,7 +344,6 @@
             document.body.style.overflow = '';
         }
 
-        // Close on ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 const expandedImg = document.querySelector('img.expanded');
